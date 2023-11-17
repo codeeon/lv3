@@ -3,21 +3,37 @@ import './App.css';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { darken } from 'polished';
+import Modal from './components/Modal';
+import Modal2 from './components/Modal2';
 
 function App() {
+  // const selections = [
+  //   { id: 1, title: '리액트' },
+  //   { id: 2, title: '자바' },
+  //   { id: 3, title: '스프링' },
+  //   { id: 4, title: '리액트 네이티브' },
+  // ];
+
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
 
   const onChangeName = (e) => {
     setName(e.target.value);
   };
+  // Q.
   const onChangePrice = (e) => {
-    setPrice(e.target.value);
+    const price = e.target.value;
+    const removedCommaValue = Number(price.replaceAll(',', ''));
+    if (removedCommaValue.toLocaleString() !== 'NaN') {
+      setPrice(removedCommaValue.toLocaleString());
+    }
   };
 
-  // Q.
+  // Q. - prompt, confirm 찾아보기
   const inputAlert = () => {
-    alert(window.prompt('어렵나요?'));
+    prompt('어렵나요?');
   };
   const valueAlert = () => {
     !name && !price ? alert('이름과 가격 모두 입력해주세요') : alert(`{ name: ${name}, price: ${price} }`);
@@ -57,7 +73,7 @@ function App() {
           <div>
             <label>가격</label>
             {/* Q. */}
-            <MediumInput type='number' onChange={onChangePrice} value={price} />
+            <MediumInput type='text' onChange={onChangePrice} value={price} />
           </div>
           <SmallBtn onClick={valueAlert} bColor='rgb(85,239,196)'>
             저장
@@ -65,23 +81,40 @@ function App() {
         </FlexDiv>
         <h1>Modal</h1>
         <FlexDiv gap='10px'>
-          <SmallBtn bColor='rgb(85,239,196)'>open modal</SmallBtn>
-          <LargeBtn bColor='#FAB1A0' color='#D63031'>
+          <SmallBtn onClick={() => setIsOpen(true)} bColor='rgb(85,239,196)'>
+            open modal
+          </SmallBtn>
+          <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+            닫기와 확인 버튼 2개가 있고, 외부 영역을 눌러도 모달이 닫히지 않아요.
+          </Modal>
+          <LargeBtn onClick={() => setIsOpen2(true)} bColor='#FAB1A0' color='#D63031'>
             open modal
           </LargeBtn>
+          <Modal2 open={isOpen2} onClose={() => setIsOpen2(false)}>
+            닫기 버튼 1개가 있고,
+            <br />
+            외부 영역을 누르면 모달이 닫혀요.
+          </Modal2>
         </FlexDiv>
         <SelectDiv>
           <h1>Select</h1>
           <div>
             <FlexDiv gap='10px'>
-              <SelectBtn>
-                <div>리액트</div>
-                <div>▼</div>
-              </SelectBtn>
-              <SelectBtn>
-                <div>리액트</div>
-                <div>▼</div>
-              </SelectBtn>
+              <div>
+                <SelectBtn>
+                  <div>리액트</div>
+                  <div>▼</div>
+                </SelectBtn>
+                {/* <Selection /> */}
+              </div>
+
+              <div>
+                <SelectBtn>
+                  <div>리액트</div>
+                  <div>▼</div>
+                </SelectBtn>
+                {/* <Selection /> */}
+              </div>
             </FlexDiv>
           </div>
         </SelectDiv>
@@ -91,10 +124,6 @@ function App() {
 }
 
 export default App;
-
-const Selections = () => {
-  return <></>;
-};
 
 const Layout = styled.div`
   margin: 30px;
@@ -177,6 +206,7 @@ const SelectDiv = styled.div`
   overflow: hidden;
   position: relative;
   margin-top: 50px;
+  z-index: 2;
 `;
 
 const SelectBtn = styled.button`

@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Modal from './components/Modal';
 
 const BUTTON_WRAPPER_STYLES = {
   position: 'relative',
@@ -16,10 +17,11 @@ function App() {
   return (
     <>
       <div style={BUTTON_WRAPPER_STYLES}>
-        <button>모달 열기</button>
+        <button>open modal</button>
+        <Modal></Modal>
       </div>
 
-      <div style={OTHER_CONTENT_STYLES}></div>
+      <div style={OTHER_CONTENT_STYLES}>Other Contents</div>
     </>
   );
 }
