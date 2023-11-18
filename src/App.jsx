@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import styled from 'styled-components';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { darken } from 'polished';
 import Modal from './components/Modal';
 import Modal2 from './components/Modal2';
@@ -104,7 +104,7 @@ function App() {
             </div>
           </FlexDiv>
         </Selects>
-        <FlexDiv id='selectProgram' style={{ position: 'absolute',  }}></FlexDiv>
+        <FlexDiv id='selectProgram'></FlexDiv>
       </Layout>
     </>
   );

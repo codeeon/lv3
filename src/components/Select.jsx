@@ -84,15 +84,14 @@ const Menus = styled.div`
   background-color: #fff;
   border-radius: 12px;
   overflow: hidden;
-  top: -100px;
+  top: 100px;
 `;
 
 const Selections = styled.div`
   height: 40px;
   width: 300px;
   font-size: 14px;
-  /* position: relative; */
-
+  position: relative;
   &:hover {
     background-color: rgb(221, 221, 221);
   }
