@@ -1,19 +1,14 @@
 import React from 'react';
 import './App.css';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { darken } from 'polished';
 import Modal from './components/Modal';
 import Modal2 from './components/Modal2';
+import Select from './components/Select';
+import Select2 from './components/Select2';
 
 function App() {
-  // const selections = [
-  //   { id: 1, title: '리액트' },
-  //   { id: 2, title: '자바' },
-  //   { id: 3, title: '스프링' },
-  //   { id: 4, title: '리액트 네이티브' },
-  // ];
-
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +34,9 @@ function App() {
     !name && !price ? alert('이름과 가격 모두 입력해주세요') : alert(`{ name: ${name}, price: ${price} }`);
   };
 
+  const ref = useRef();
+  console.log(ref, ref.current);
+
   return (
     <>
       <Layout>
@@ -46,12 +44,11 @@ function App() {
           <h1>Button</h1>
           <FlexDiv gap='10px'>
             <LargeBtn onClick={() => alert('버튼을 만들어 보세요!')} bColor='rgb(85,239,196)'>
-              <div>Large Primary Button ></div>
+              <div>Large Primary Button {'>'}</div>
             </LargeBtn>
             <MediumBtn bColor='rgb(85,239,196)'>Medium</MediumBtn>
             <SmallBtn bColor='rgb(85,239,196)'>Small</SmallBtn>
           </FlexDiv>
-
           <FlexDiv gap='10px'>
             <LargeBtn onClick={() => alert(inputAlert())} bColor='#FAB1A0' color='#D63031'>
               Large Negative Button
@@ -96,28 +93,18 @@ function App() {
             외부 영역을 누르면 모달이 닫혀요.
           </Modal2>
         </FlexDiv>
-        <SelectDiv>
+        <Selects>
           <h1>Select</h1>
-          <div>
-            <FlexDiv gap='10px'>
-              <div>
-                <SelectBtn>
-                  <div>리액트</div>
-                  <div>▼</div>
-                </SelectBtn>
-                {/* <Selection /> */}
-              </div>
-
-              <div>
-                <SelectBtn>
-                  <div>리액트</div>
-                  <div>▼</div>
-                </SelectBtn>
-                {/* <Selection /> */}
-              </div>
-            </FlexDiv>
-          </div>
-        </SelectDiv>
+          <FlexDiv gap='10px'>
+            <div>
+              <Select></Select>
+            </div>
+            <div>
+              <Select2></Select2>
+            </div>
+          </FlexDiv>
+        </Selects>
+        <FlexDiv id='selectProgram' style={{ position: 'absolute',  }}></FlexDiv>
       </Layout>
     </>
   );
@@ -125,6 +112,7 @@ function App() {
 
 export default App;
 
+// 스타일드 컴포넌트도 좀 더 의미론적인 변수명 지정이 좋다고 하심. - ex) Selects
 const Layout = styled.div`
   margin: 30px;
 `;
@@ -132,7 +120,6 @@ const Layout = styled.div`
 const FlexDiv = styled.div`
   display: flex;
   gap: ${(props) => props.gap};
-  /* justify-content: space-between; */
   margin: 20px;
 `;
 
@@ -200,23 +187,10 @@ const MediumInput = styled.input`
   border-radius: 8px;
 `;
 
-const SelectDiv = styled.div`
+const Selects = styled.div`
   border: 3px solid rgb(221, 221, 221);
   height: 200px;
   overflow: hidden;
   position: relative;
   margin-top: 50px;
-  z-index: 2;
-`;
-
-const SelectBtn = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 28px;
-  border: 1px solid rgb(221, 221, 221);
-  height: 40px;
-  width: 300px;
-  background-color: #fff;
-  border-radius: 12px;
 `;
