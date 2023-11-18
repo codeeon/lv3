@@ -1,27 +1,27 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-// import styled from 'styled-components';
+// import React from 'react';
+// import { useState, useEffect } from 'react';
+// // import styled from 'styled-components';
 
-const SelectOther = (ref, initialState) => {
-  const [programsOpen, setProgramsOpen] = useState(initialState);
+// const SelectOther = ({ ref, initialState }) => {
+//   const [programsOpen, setProgramsOpen] = useState(initialState);
 
-  useEffect(() => {
-    const pageClickEvent = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) {
-        setProgramsOpen(!programsOpen);
-      }
-    };
+//   useEffect(() => {
+//     const pageClickEvent = (e) => {
+//       if (ref.current && !ref.current.contains(e.target)) {
+//         setProgramsOpen(!programsOpen);
+//       }
+//     };
 
-    if (programsOpen) {
-      window.addEventListener('click', pageClickEvent);
-    }
+//     if (programsOpen) {
+//       window.addEventListener('click', pageClickEvent);
+//     }
 
-    return () => {
-      window.removeEventListener('click', pageClickEvent);
-    };
-  }, [programsOpen, ref]);
-  return [programsOpen, setProgramsOpen];
-};
+//     return () => {
+//       window.removeEventListener('click', pageClickEvent);
+//     };
+//   }, [programsOpen, ref]);
+//   return [programsOpen, setProgramsOpen];
+// };
 
 //   return (
 //     <div>

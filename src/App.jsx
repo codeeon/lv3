@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import styled from 'styled-components';
 import { useState, useRef } from 'react';
-import { darken } from 'polished';
+// import { darken } from 'polished';
 import Modal from './components/Modal';
 import Modal2 from './components/Modal2';
 import Select from './components/Select';
@@ -156,7 +156,8 @@ const MediumBtn = styled.div`
   font-size: 13.33px;
   color: ${(props) => props.color};
   &:active {
-    background-color: ${darken(0.1, '#3498db')};
+    background-color: '#3498db';
+    /* background-color: ${(darken(0.1), '#3498db')}; */
   }
 `;
 
@@ -175,7 +176,8 @@ const SmallBtn = styled.div`
   font-size: 13.33px;
   color: ${(props) => props.color};
   &:active {
-    background-color: ${(darken(0.1), '#3498db')};
+    background-color: '#3498db';
+    /* background-color: ${(darken(0.1), '#3498db')}; */
   }
 `;
 
